@@ -1,0 +1,10 @@
+tensorflow
+sklearn
+requests
+Pillow
+Keras
+matplotlib
+opencv-python
+asyncio
+scipy
+imutils
