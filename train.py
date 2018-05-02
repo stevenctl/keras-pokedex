@@ -35,8 +35,8 @@ args = vars(ap.parse_args())
 # initialize the number of epochs to train for, initial learning rate,
 # batch size, and image dimensions
 EPOCHS = 100
-INIT_LR = 1e-3
-BS = 32
+INITIAL_LEARNING_RATE = 1e-3
+BATCH_SIZE = 32
 IMAGE_DIMS = (96, 96, 3)
 
 # initialize the data and labels
@@ -83,16 +83,16 @@ data_augmenter = ImageDataGenerator(rotation_range=25, width_shift_range=0.1,
 print("compiling model...")
 model = SmallerVGGNet.build(width=IMAGE_DIMS[1], height=IMAGE_DIMS[0],
                             depth=IMAGE_DIMS[2], classes=len(lb.classes_))
-opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
+opt = Adam(lr=INITIAL_LEARNING_RATE, decay=INITIAL_LEARNING_RATE / EPOCHS)
 model.compile(loss="categorical_crossentropy", optimizer=opt,
               metrics=["accuracy"])
 
 # train the network
 print("training network...")
 H = model.fit_generator(
-    data_augmenter.flow(trainX, trainY, batch_size=BS),
+    data_augmenter.flow(trainX, trainY, batch_size=BATCH_SIZE),
     validation_data=(testX, testY),
-    steps_per_epoch=len(trainX) // BS,
+    steps_per_epoch=len(trainX) // BATCH_SIZE,
     epochs=EPOCHS, verbose=1)
 
 # save the model to disk
