@@ -2,3 +2,4 @@ Pillow
 Keras
 opencv-python
 imutils
+flask
