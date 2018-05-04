@@ -1,5 +1,19 @@
 # Pokemon with CNNs
 
+This project currently has two decent neural network models.
+ - A smaller version of VGG Net from this tutorial: https://www.pyimagesearch.com/2018/04/16/keras-and-convolutional-neural-networks-cnns/
+ - Resnet 34: https://github.com/raghakot/keras-resnet
+ 
+Ex: 
+```
+./classify.py -m poke_small_vgg.model -l pokemon.pickle -i squirtle.png
+[INFO] classifying image...
+Machop: 0.70%
+Seadra: 0.82%
+Squirtle: 97.40%
+```
+
+![squirtle classified](samples/squirtle_classified.png)
 
 ## Preparing Data
 
