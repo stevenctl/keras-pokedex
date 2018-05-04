@@ -38,7 +38,7 @@ for pokemon_name in pokemon_names:
         cv2.imwrite('dataset_augmented/%s/%s.png' % (pokemon_name, ("%s" % n).zfill(3)), image)
         n+=1
         if image is not None:
-            for bg_img_idx in random.sample(range(0, len(bg_images) - 1), 4):
+            for bg_img_idx in random.sample(range(0, len(bg_images) - 1), 4) + random.sample(range(0, len(bg_images) - 1), 4) + random.sample(range(0, len(bg_images) - 1), 4):
                 pokemon_size = int(196 * decimal.Decimal(random.randrange(40, 95))/100)
                 pokemon_x = random.randrange(0, 196 - pokemon_size)
                 pokemon_y = random.randrange(0, 196 - pokemon_size)
