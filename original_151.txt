@@ -26,9 +26,10 @@ Pikachu
 Raichu
 Sandshrew
 Sandslash
+Nidoran_f
 Nidorina
 Nidoqueen
-Nidoran
+Nidoran_m
 Nidorino
 Nidoking
 Clefairy
@@ -118,7 +119,7 @@ Goldeen
 Seaking
 Staryu
 Starmie
-Mr. Mime
+Mr_Mime
 Scyther
 Jynx
 Electabuzz
@@ -138,7 +139,7 @@ Omanyte
 Omastar
 Kabuto
 Kabutops
-Aerodactylq
+Aerodactyl
 Snorlax
 Articuno
 Zapdos
