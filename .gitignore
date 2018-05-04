@@ -4,3 +4,4 @@ dataset_augmented/
 tmp
 .idea/
 venv/
+.DS_STORE
