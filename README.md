@@ -39,6 +39,13 @@ The following script will scrape the dataset directory and create new images for
 ./add_background.py
 ```
 
+The results will look like this: 
+
+![mew original](samples/mew_go.png) ![mew augmented](samples/mew_aug.png)
+
+![charmander original](samples/charmander_go.png) ![charmander augmented](samples/charmander_aug.png)
+
+
 ## Training
 
 ```
