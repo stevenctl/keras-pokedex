@@ -1,4 +1,3 @@
-# import the necessary packages
 from keras.models import Sequential
 from keras.layers.normalization import BatchNormalization
 from keras.layers.convolutional import Conv2D

@@ -20,17 +20,23 @@ import random
 import pickle
 import cv2
 import os
+from models.resnet import ResnetBuilder
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-d", "--dataset", required=True,
                 help="path to input dataset (i.e., directory of images)")
 ap.add_argument("-m", "--model", required=True,
                 help="path to output model")
+
+ap.add_argument("-t", "--type", required=True,
+                help="'resnet' or 'vggnet'")
+
 ap.add_argument("-l", "--labelbin", required=True,
                 help="path to output label binarizer")
 ap.add_argument("-p", "--plot", type=str, default="plot.png",
                 help="path to output accuracy/loss plot")
 args = vars(ap.parse_args())
+
 
 # initialize the number of epochs to train for, initial learning rate,
 # batch size, and image dimensions
@@ -81,8 +87,21 @@ data_augmenter = ImageDataGenerator(rotation_range=25, width_shift_range=0.1,
                                     horizontal_flip=True, fill_mode="nearest")
 
 print("compiling model...")
-model = SmallerVGGNet.build(width=IMAGE_DIMS[1], height=IMAGE_DIMS[0],
-                            depth=IMAGE_DIMS[2], classes=len(lb.classes_))
+
+model = None
+model_type = args['type']
+if model_type == 'vggnet':
+    model = SmallerVGGNet.build(width=IMAGE_DIMS[1], height=IMAGE_DIMS[0],
+                                depth=IMAGE_DIMS[2], classes=len(lb.classes_))
+elif model_type == 'resnet':
+    model = ResnetBuilder.build(input_shape=(IMAGE_DIMS[1], IMAGE_DIMS[0], IMAGE_DIMS[2]),
+                                num_outputs=len(lb.classes_),
+                                block_fn='bottleneck',
+                                repetitions=3)
+else:
+    print('Unknown model type %s' % model_type)
+    exit(1)
+
 opt = Adam(lr=INITIAL_LEARNING_RATE, decay=INITIAL_LEARNING_RATE / EPOCHS)
 model.compile(loss="categorical_crossentropy", optimizer=opt,
               metrics=["accuracy"])
