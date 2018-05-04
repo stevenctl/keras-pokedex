@@ -94,7 +94,7 @@ if model_type == 'vggnet':
     model = SmallerVGGNet.build(width=IMAGE_DIMS[1], height=IMAGE_DIMS[0],
                                 depth=IMAGE_DIMS[2], classes=len(lb.classes_))
 elif model_type == 'resnet':
-    model = ResnetBuilder.build_resnet_34(input_shape=(IMAGE_DIMS[1], IMAGE_DIMS[2], IMAGE_DIMS[0]),
+    model = ResnetBuilder.build_resnet_34(input_shape=(IMAGE_DIMS[0], IMAGE_DIMS[1], IMAGE_DIMS[2]),
                                 num_outputs=len(lb.classes_))
 else:
     print('Unknown model type %s' % model_type)
